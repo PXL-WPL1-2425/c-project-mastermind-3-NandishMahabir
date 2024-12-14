@@ -62,6 +62,7 @@ namespace Mastermind
                     label.Width = 32;
                     label.Margin = new Thickness(5, 0, 5, 0);
                     label.Background = Brushes.DarkSlateGray;
+                    label.ToolTip = "Wrong color, wrong place";
 
                     stack.Children.Add(label);
                 }
@@ -210,12 +211,19 @@ namespace Mastermind
                 Label label = stackPanel.Children[stackPanel.Children.Count - 1] as Label;
                 label.BorderBrush = Brushes.DarkRed;
                 label.BorderThickness = new Thickness(3);
+                label.ToolTip = "Correct color, correct place";
             }
             else if (points == 1)
             {
                 Label label = stackPanel.Children[stackPanel.Children.Count - 1] as Label;
                 label.BorderBrush = Brushes.Wheat;
                 label.BorderThickness = new Thickness(3);
+                label.ToolTip = "Correct color, wrong place";
+            }
+            else
+            {
+                Label label = stackPanel.Children[stackPanel.Children.Count - 1] as Label;
+                label.ToolTip = "Wrong color, wrong place";
             }
         }
         private void ClearComboBoxSelection()
