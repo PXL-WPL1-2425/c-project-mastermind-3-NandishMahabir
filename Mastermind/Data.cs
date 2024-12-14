@@ -20,6 +20,7 @@ namespace Mastermind
         public static int PossibleAttempts { get; set; }
         public static int AmountOfPlayers { get; set; }
         public static int CurrentPlayer { get; set; }
+        public static int AmountOfColors { get; set; }
         public static List<string> PlayerNames { get; set; }
         public static int Score { get; set; }
         static Dictionary<SolidColorBrush, string> colors = new Dictionary<SolidColorBrush, string>();
@@ -56,6 +57,7 @@ namespace Mastermind
             HighscoresSaved = 0;
             Score = 100;
             PossibleAttempts = 10;
+            AmountOfColors = 6;
             highscores = new string[15]; 
             PlayerNames = new List<string>();
             timer.Tick += new EventHandler(CheckTimer);
@@ -66,7 +68,7 @@ namespace Mastermind
             colorCode.Clear();
             for (int i = 0; i < 4; i++)
             {
-                int index = random.Next(0, colors.Count);
+                int index = random.Next(0, AmountOfColors);
                 colorCode.Add(colors.ElementAt(index).Value);
             }
         }
@@ -175,7 +177,6 @@ namespace Mastermind
             secondsPassed = 0;
             Attempts = 1;
             StopCountdown();
-
             GenerateRandomColorCode();
         }
     }

@@ -29,6 +29,7 @@
             </MenuItem>
             <MenuItem Header="Instellingen">
                 <MenuItem Name="MnuAantalPogingen" Header="Aantal pogingen" Click="MnuAantalPogingen_Click"/>
+                <MenuItem Name="MnuAantalKleuren" Header="Aantal kleuren" Click="MnuAantalKleuren_Click"/>
             </MenuItem>
         </Menu>
         <ComboBox Name="CboColor1" Grid.Row="1" FontSize="18" Margin="5 20" SelectionChanged="CboColor_SelectionChanged"/>

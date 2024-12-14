@@ -73,12 +73,12 @@ namespace Mastermind
         }
         private void FillComboBoxes()
         {
-            foreach(var color in Data.Colors)
+            for(int i = 0;i < Data.AmountOfColors;i++)
             {
-                CboColor1.Items.Add(color.Value);
-                CboColor2.Items.Add(color.Value);
-                CboColor3.Items.Add(color.Value);
-                CboColor4.Items.Add(color.Value);
+                CboColor1.Items.Add(Data.Colors.ElementAt(i).Value);
+                CboColor2.Items.Add(Data.Colors.ElementAt(i).Value);
+                CboColor3.Items.Add(Data.Colors.ElementAt(i).Value);
+                CboColor4.Items.Add(Data.Colors.ElementAt(i).Value);
             }
         }
         private void CboColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -333,6 +333,30 @@ namespace Mastermind
                 playerName = Interaction.InputBox("What is your name?", "Player Name", "", 500);
             }
             return playerName;
+        }
+
+        private void MnuAantalKleuren_Click(object sender, RoutedEventArgs e)
+        {
+            string input = Interaction.InputBox("How many colors would you like to have?", "Amount of colors", "6", 500);
+            int colors = 0;
+            while (string.IsNullOrEmpty(input) || !int.TryParse(input, out colors) || colors > 6 || colors < 4)
+            {
+                MessageBox.Show("Please select a number between 4 and 6!", "Invalid number");
+                input = Interaction.InputBox("How many attempts would you like to have?", "Amount of attempts", "6", 500);
+            }
+            Data.AmountOfColors = colors;
+            ClearUI();
+            Data.ResetGame();
+            Data.StartCountdown();
+            ClearComboBoxes();
+            FillComboBoxes();
+        }
+        private void ClearComboBoxes()
+        {
+            CboColor1.Items.Clear();
+            CboColor2.Items.Clear();
+            CboColor3.Items.Clear();
+            CboColor4.Items.Clear();
         }
     }
 }
